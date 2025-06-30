@@ -1,33 +1,33 @@
 # Tienda de regalos Gifty inventario y registro de ventas
 
 inventario = {
-    "SKU001": {"nombre": "peluche", "precio": 10.0, "cantidad": 50},
-    "SKU002": {"nombre": "taza", "precio": 5.0, "cantidad": 100},
-    "SKU003": {"nombre": "camiseta", "precio": 15.0, "cantidad": 75},
-    "SKU004": {"nombre": "llavero", "precio": 3.0, "cantidad": 200},
-    "SKU005": {"nombre": "bufanda", "precio": 20.0, "cantidad": 30},
-    "SKU006": {"nombre": "gorro", "precio": 12.0, "cantidad": 40},
-    "SKU007": {"nombre": "agenda", "precio": 8.0, "cantidad": 60},
-    "SKU008": {"nombre": "correa_hombre", "precio": 25.0, "cantidad": 20},
-    "SKU009": {"nombre": "correa_mujer", "precio": 22.0, "cantidad": 25},
-    "SKU010": {"nombre": "cuadro_pared", "precio": 30.0, "cantidad": 15},
-    "SKU011": {"nombre": "juego_mesa", "precio": 18.0, "cantidad": 10},
-    "SKU012": {"nombre": "juego_cartas", "precio": 7.0, "cantidad": 80},
-    "SKU013": {"nombre": "rompecabezas", "precio": 14.0, "cantidad": 45},
-    "SKU014": {"nombre": "pelota_futbol", "precio": 11.0, "cantidad": 35},
-    "SKU015": {"nombre": "pelota_baloncesto", "precio": 13.0, "cantidad": 25},
-    "SKU016": {"nombre": "set_tenis", "precio": 16.0, "cantidad": 20},
-    "SKU017": {"nombre": "set_pintura", "precio": 9.0, "cantidad": 50},
-    "SKU018": {"nombre": "set_jardineria", "precio": 17.0, "cantidad": 30},
-    "SKU019": {"nombre": "reloj_hombre", "precio": 40.0, "cantidad": 10},
-    "SKU020": {"nombre": "reloj_mujer", "precio": 35.0, "cantidad": 15},
-    "SKU021": {"nombre": "mochila", "precio": 28.0, "cantidad": 20},
+    "SKU001": {"nombre": "peluche", "precio": 10.0, "cantidad": 50, "ubicacion": "estante1"},
+    "SKU002": {"nombre": "taza", "precio": 5.0, "cantidad": 100, "ubicacion": "estante2"},
+    "SKU003": {"nombre": "camiseta", "precio": 15.0, "cantidad": 75, "ubicacion": "estante3"},
+    "SKU004": {"nombre": "llavero", "precio": 3.0, "cantidad": 200, "ubicacion": "estante4"},
+    "SKU005": {"nombre": "bufanda", "precio": 20.0, "cantidad": 30, "ubicacion": "estante5"},
+    "SKU006": {"nombre": "gorro", "precio": 12.0, "cantidad": 40, "ubicacion": "estante6"},
+    "SKU007": {"nombre": "agenda", "precio": 8.0, "cantidad": 60, "ubicacion": "estante7"},
+    "SKU008": {"nombre": "correa_hombre", "precio": 25.0, "cantidad": 20, "ubicacion": "estante8"},
+    "SKU009": {"nombre": "correa_mujer", "precio": 22.0, "cantidad": 25, "ubicacion": "estante9"},
+    "SKU010": {"nombre": "cuadro_pared", "precio": 30.0, "cantidad": 15, "ubicacion": "estante10"},
+    "SKU011": {"nombre": "juego_mesa", "precio": 18.0, "cantidad": 10, "ubicacion": "estante11"},
+    "SKU012": {"nombre": "juego_cartas", "precio": 7.0, "cantidad": 80, "ubicacion": "estante12"},
+    "SKU013": {"nombre": "rompecabezas", "precio": 14.0, "cantidad": 45, "ubicacion": "estante13"},
+    "SKU014": {"nombre": "pelota_futbol", "precio": 11.0, "cantidad": 35, "ubicacion": "estante14"},
+    "SKU015": {"nombre": "pelota_baloncesto", "precio": 13.0, "cantidad": 25, "ubicacion": "estante15"},
+    "SKU016": {"nombre": "set_tenis", "precio": 16.0, "cantidad": 20, "ubicacion": "estante16"},
+    "SKU017": {"nombre": "set_pintura", "precio": 9.0, "cantidad": 50, "ubicacion": "estante17"},
+    "SKU018": {"nombre": "set_jardineria", "precio": 17.0, "cantidad": 30, "ubicacion": "estante18"},
+    "SKU019": {"nombre": "reloj_hombre", "precio": 40.0, "cantidad": 10, "ubicacion": "estante19"},
+    "SKU020": {"nombre": "reloj_mujer", "precio": 35.0, "cantidad": 15, "ubicacion": "estante20"},
+    "SKU021": {"nombre": "mochila", "precio": 28.0, "cantidad": 20, "ubicacion": "estante21"},
 }
 
 def mostrar_inventario(inventario):
     print("Inventario de Gifty:")
     for sku, producto in inventario.items():
-        print(f"SKU: {sku}, Nombre: {producto['nombre']}, Precio: ${producto['precio']}, Cantidad: {producto['cantidad']}")
+        print(f"SKU: {sku}, Nombre: {producto['nombre']}, Precio: ${producto['precio']}, Cantidad: {producto['cantidad']}, Ubicación: {producto['ubicacion']}")
 
 def vender_producto(inventario):
     sku = input("Ingrese el SKU del producto a vender: ")
@@ -74,7 +74,17 @@ def buscar_producto(inventario):
         producto = inventario[sku]
         print(f"Producto encontrado: SKU: {sku}, Nombre: {producto['nombre']}, Precio: ${producto['precio']}, Cantidad: {producto['cantidad']}")
     else:
-        print("Producto no encontrado.")    
+        print("Producto no encontrado.") 
+
+def generar_reporte_ventas(inventario):
+    print("\n--- Reporte de Ventas Diario ---")
+    total_ventas = 0
+    for sku, producto in inventario.items():
+        cantidad_vendida = producto['cantidad']  # Asumimos que la cantidad actual es la cantidad vendida
+        if cantidad_vendida < 50:  # Por ejemplo, si se vendieron menos de 50 unidades
+            total_ventas += cantidad_vendida * producto['precio']
+            print(f"Producto: {producto['nombre']}, Cantidad Vendida: {cantidad_vendida}, Total: ${cantidad_vendida * producto['precio']:.2f}")
+    print(f"Total de ventas del día: ${total_ventas:.2f}")   
 
 def gestion_tienda(inventario):
     while True:
@@ -84,8 +94,9 @@ def gestion_tienda(inventario):
         print("3. Agregar producto")
         print("4. Eliminar producto")
         print("5. Buscar producto")
-        print("6. Salir")
-        
+        print("6. Reporte de ventas diario")
+        print("7. Salir")
+
         opcion = input("Seleccione una opción: ")
         
         if opcion == '1':
@@ -99,20 +110,24 @@ def gestion_tienda(inventario):
         elif opcion == '5':
             buscar_producto(inventario)
         elif opcion == '6':
-            print("Saliendo de tienda :)")
+            generar_reporte_ventas(inventario)
+        elif opcion == '7':
             break
         else:
             print("Opción no válida. Intente nuevamente.")
 
 gestion_tienda(inventario)
 
-# pendiente agregar funciones de actualización de precios y cantidad, búsqueda por nombre, y reporte de ventas.
-# agregar ubicación de productos en el inventario.# También se puede agregar una función para generar un reporte de ventas al final del día.
+# pendiente agregar funciones de actualización de precios y cantidad. ok
+# búsqueda por nombre
+# reporte de ventas.
+# agregar ubicación de productos en el inventario. ok
+# También se puede agregar una función para generar un reporte de ventas al final del día.
 # Además, se puede implementar un sistema de autenticación para acceder a las funciones de gestión.
 # Se pueden agregar más productos al inventario y mejorar la interfaz de usuario.
 # También se puede considerar agregar una base de datos para almacenar el inventario y las ventas de manera persistente.
 # Por último, se puede implementar un sistema de notificaciones para alertar sobre productos con bajo inventario o ventas destacadas.
 # Esto permitirá una mejor gestión del inventario y una experiencia de usuario más completa.
-# Fin del programa
+# Fin del programa 
 
 
