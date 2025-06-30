@@ -39,7 +39,7 @@ inventario = {
 #▶️ Cómo ejecutar
 - Asegúrate de tener Python 3 instalado.
 - Ejecuta el script en tu terminal con:
-python tienda_gifty.py
+python Trabajo2.py
 
 
 - Navega por el menú para gestionar el inventario.
