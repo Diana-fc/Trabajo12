@@ -8,7 +8,7 @@ print(ventas)
 def mostrar_inventario(inventario): 
     print("Inventario de Gifty:") 
     for sku, producto in inventario.items(): 
-        print(f"SKU: {sku}, Nombre: {producto['nombre']}, Precio: ${producto['precio']}, Cantidad: {producto['cantidad']}")  
+        print(f"SKU: {sku}, Nombre: {producto['nombre']}, Precio: ${producto['precio']}, Cantidad: {producto['cantidad']}, Ubicación: ¨{producto ['ubicacion']}")  
 
 mostrar_inventario(inventario) 
 
@@ -71,13 +71,19 @@ def agregar_producto(inventario):
                 continue 
             break 
         except ValueError: 
-            print("Ingrese un número entero válido.") 
+            print("Ingrese un número entero válido.")
+    
+    while True:
+        
+        ubicacion = input("Ingrese la ubicación del producto: \n(Si quiere dejar la ubicación actual presione ENTER)\n") 
+        if ubicacion.strip() == "": 
+            ubicacion = "No especificada"
  
-    inventario[nuevo_sku] = {"nombre": nombre, "precio": precio, "cantidad": cantidad} 
+    inventario[nuevo_sku] = {"nombre": nombre, "precio": precio, "cantidad": cantidad, "ubicacion": ubicacion}"}
     print(f"Producto {nombre} agregado al inventario con SKU {nuevo_sku}.") 
   
 
-def actualizar_producto(inventario): 
+def actualizar_producto(inventario):
     while True: 
         sku = input("\nIngrese el SKU del producto a actualizar: \n(Si quiere volver al menú, ingrese 0)\n") 
         if sku == '0': 
@@ -313,7 +319,8 @@ def gestion_tienda(inventario):
             print("Opción no válida. Intente nuevamente.") 
   
 
-gestion_tienda(inventario) 
+gestion_tienda(inventario)
+
 
  
 
